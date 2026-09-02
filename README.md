@@ -1,9 +1,9 @@
-[README.md](https://github.com/user-attachments/files/31756686/README.md)
+[README.md](https://github.com/user-attachments/files/31760798/README.md)
 # Angela – Deine persönliche KI-Assistentin 🤖✨
 
 Angela ist eine Windows-Desktop-App (Electron), mit der du **reden**, **Aufgaben erledigen** und mehr kannst – auf Deutsch, mit Sprachausgabe und Sprachsteuerung.
 
-![Angela](assets/icon.svg)
+![Angela](Angela.exe.png)
 
 ## Features
 
@@ -17,7 +17,9 @@ Angela ist eine Windows-Desktop-App (Electron), mit der du **reden**, **Aufgaben
 - 📚 **Wissen** – Wikipedia-Zusammenfassungen zu jedem Thema
 - 🧮 **Rechnen** – „was ist 12 x 7 + 3", „20% von 80", „wurzel aus 144"
 - 🌐 **Webseiten öffnen** – „öffne youtube", „öffne github"
-- 🚀 **ALLE installierten Apps starten** – „öffne rechner", "öffne discord", "öffne photoshop" – Angela findet jedes Programm & jede UWP-App auf dem PC (mit Vorschlägen bei Tippfehlern)
+- 🚀 **ALLE installierten Apps starten** – „öffne rechner", "öffne discord", "öffne photoshop" – Angela findet jedes Programm & jede UWP-App auf dem PC (mit Vorschlägen bei Tippfehlern). Nicht installierte Apps werden ehrlich gemeldet – mit Vorschlägen, was es stattdessen gibt
+- 📋 **App-Liste** – "welche apps" zeigt, was alles installiert ist
+- 🐈‍⬛ **Animierter Talking-Ange-Avatar** – das originale Angela.exe.png mit rot glühenden Augen, Mund-Bewegung synchron zur Stimme, sanftem Kopf-Wiegen beim Sprechen, zufälligem Blinzeln & Umsehen
 - 🎵 **Musik & Videos** – "spiel musik von rick astley" → Angela sucht auf YouTube, spielt in einem eigenen Fenster ab, "stopp musik" beendet
 - 🎮 **Game-Companion** – erkennt automatisch, wenn du Roblox, Minecraft, Fortnite u.a. spielst: "ich spiele?", "spielzeit" (Pausen-Erinnerung ab 1h), "spiele roblox" startet das Spiel
 - 🔎 **Websuche** – „suche katzen bilder"
@@ -104,6 +106,7 @@ Angela erkennt **deutsche Sprache vollständig lokal & offline** über `whisper-
 
 - **🎤 Mikrofon-Button:** klicken → einmal sprechen → Angela versteht und antwortet.
 - **🔴 Live-Modus:** klicken → durchgehend zuhören. Sprich einfach, Angela antwortet, und lauscht direkt weiter. **„beenden“** stoppt.
+- **Echo-Schutz:** Während Angela selbst spricht, ist das Mikrofon aus – sie hört sich nicht versehentlich selbst und antwortet nicht auf ihre eigene Stimme.
 - Beim ersten Klick fordert Windows den **Mikrofon-Zugriff** an → **„Zulassen“** klicken. Falls es fehlschlägt: Windows → Einstellungen → Datenschutz → Mikrofon → „Desktop-Apps“ erlauben.
 
 > **Hinweis:** In der Browser-Vorschau (ohne Electron) ist die Offline-Erkennung nicht verfügbar; dort fällt Angela auf die Cloud-Spracherkennung des Browsers zurück.
@@ -119,7 +122,8 @@ Angela erkennt **deutsche Sprache vollständig lokal & offline** über `whisper-
 - `voice-capture.js` – Mikrofon-Aufnahme mit Sprachaktivitäts-Erkennung (VAD)
 - `stt.js` – lokale Spracherkennung (whisper-cli) im Main-Prozess
 - `yt-search.js` – YouTube-Suche ohne API-Key (parst die Ergebnisseite)
-- `app-index.js` – indexiert alle installierten Apps (Get-StartApps, Startmenü) mit Fuzzy-Suche
+- `app-index.js` – indexiert alle installierten Apps (Get-StartApps, Startmenü, Steam-Bibliothek) mit Fuzzy-Suche & Alias-Tabelle
+- `Angela.exe.png` – der animierte Avatar: Augen-Overlay exakt auf die Bild-Augen kalibriert, Mund-Sync, Kopf-Tilt, Life-Loop (Blinzeln/Umsehen) in `renderer.js`
 - `bin/` + `models/` – gebündelte whisper.cpp-Binaries & Modell (deutsch)
 - Speicher: `%APPDATA%/angela-ai-assistant/angela-memory.json`
 
