@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/31760798/README.md)
+[README.md](https://github.com/user-attachments/files/31796238/README.md)
 # Angela – Deine persönliche KI-Assistentin 🤖✨
 
 Angela ist eine Windows-Desktop-App (Electron), mit der du **reden**, **Aufgaben erledigen** und mehr kannst – auf Deutsch, mit Sprachausgabe und Sprachsteuerung.
@@ -8,6 +8,7 @@ Angela ist eine Windows-Desktop-App (Electron), mit der du **reden**, **Aufgaben
 ## Features
 
 - 💬 **Chatten** – Schreibe oder **spreche** mit Angela (Mikrofon-Button 🎤)
+- 📞 **Discord-Anrufe** – "rufe max an" klingelt beim Kontakt über Angelas eingebettetes Discord, "leg auf" beendet sofort. (Einmalig in Angelas Discord-Fenster anmelden)
 - 🔴 **Live-Modus** – durchgehend freihändig sprechen wie bei Gemini Live („beenden“ stoppt)
 - 🔊 **Sprachausgabe** – Angela antwortet per Stimme (deutsche Stimme)
 - 🎙️ **Offline-Erkennung** – deine Stimme wird lokal erkannt (whisper), ganz ohne Cloud & Limits
@@ -65,6 +66,7 @@ Die fertige **Angela.exe** liegt danach im Ordner `release/` – einfach doppelk
 | "ich spiele" / "spielzeit" | Game-Companion erkennt das Spiel & misst die Spielzeit |
 | „öffne rechner" | Windows-Rechner |
 | "öffne discord" | Startet die Discord-App (falls installiert, sonst Web) |
+| "rufe max an" / "leg auf" | Discord-Anruf starten (klingelt beim Kontakt) / sofort beenden |
 | „erzähl einen witz" | Einen Witz 😄 |
 
 ## KI-Chatmodus – gratis & unbegrenzt 🎉
@@ -102,7 +104,7 @@ Fertig – Angela chattet jetzt frei & unbegrenzt. Skills wie Timer, Wetter und 
 
 ## Spracheingabe – wie sie funktioniert 🎙️
 
-Angela erkennt **deutsche Sprache vollständig lokal & offline** über `whisper-cli` (whisper.cpp). Kein Cloud-Dienst, kein API-Key, keine Limits – deine Stimme verlässt den PC nie.
+Angela erkennt **deutsche Sprache vollständig lokal & offline** über `whisper-cli` (whisper.cpp, `ggml-base`-Modell – deutlich genauer als tiny). Kein Cloud-Dienst, kein API-Key, keine Limits – deine Stimme verlässt den PC nie. Wortanfänge gehen dank VAD-Vorspann nicht mehr verloren.
 
 - **🎤 Mikrofon-Button:** klicken → einmal sprechen → Angela versteht und antwortet.
 - **🔴 Live-Modus:** klicken → durchgehend zuhören. Sprich einfach, Angela antwortet, und lauscht direkt weiter. **„beenden“** stoppt.
@@ -120,11 +122,11 @@ Angela erkennt **deutsche Sprache vollständig lokal & offline** über `whisper-
 - `brain.js` – Skill-Dispatcher + optionaler LLM-Modus
 - `renderer.js` – Chat-UI, Sprachausgabe/-eingabe, Einstellungen
 - `voice-capture.js` – Mikrofon-Aufnahme mit Sprachaktivitäts-Erkennung (VAD)
-- `stt.js` – lokale Spracherkennung (whisper-cli) im Main-Prozess
+- `stt.js` – lokale Spracherkennung (whisper-cli, bevorzugt `ggml-base`) im Main-Prozess
 - `yt-search.js` – YouTube-Suche ohne API-Key (parst die Ergebnisseite)
 - `app-index.js` – indexiert alle installierten Apps (Get-StartApps, Startmenü, Steam-Bibliothek) mit Fuzzy-Suche & Alias-Tabelle
 - `Angela.exe.png` – der animierte Avatar: Augen-Overlay exakt auf die Bild-Augen kalibriert, Mund-Sync, Kopf-Tilt, Life-Loop (Blinzeln/Umsehen) in `renderer.js`
-- `bin/` + `models/` – gebündelte whisper.cpp-Binaries & Modell (deutsch)
+- `bin/` + `models/` – gebündelte whisper.cpp-Binaries & Modelle (`ggml-base` + `ggml-tiny` Fallback, deutsch)
 - Speicher: `%APPDATA%/angela-ai-assistant/angela-memory.json`
 
 ## Lizenz
